@@ -1,0 +1,4 @@
+---
+# vars file for teampostgresql
+teampostgresql_url: http://cdn.webworks.dk/download/{{teampostgresql_zip}}
+teampostgresql_install_dir: '{{teampostgresql_parent_install_dir}}/teampostgresql'

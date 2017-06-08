@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+cd {{teampostgresql_install_dir}};
+java -cp webapp/WEB-INF/lib/log4j-1.2.17.jar-1.0.jar:webapp/WEB-INF/classes:webapp/WEB-INF/lib/* dbexplorer.TeamPostgreSQL ${TEAMPOSTGRESQL_PORT:-{{teampostgresql_port}}}

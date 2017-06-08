@@ -1,0 +1,31 @@
+---
+- name: download...
+  become: yes
+  become_user: root
+  get_url:
+    url: '{{teampostgresql_url}}'
+    dest: /tmp/{{teampostgresql_zip}}
+    mode: 0644
+
+- name: unzip...
+  become: yes
+  become_user: root
+  unarchive:
+    src: /tmp/{{teampostgresql_zip}}
+    dest: '{{teampostgresql_parent_install_dir}}'
+    creates: '{{teampostgresql_install_dir}}'
+
+- name: templatize...
+  become: yes
+  become_user: root
+  with_items:
+    - f: teampostgresql.sh
+      d: /etc/profile.d
+      m: '0644'
+    - f: teampostgresql-run.sh
+      d: '{{teampostgresql_install_dir}}'
+      m: '0755'
+  template:
+    src: '{{item.f}}.j2'
+    dest: '{{item.d}}/{{item.f}}'
+    mode: '{{item.m}}'
