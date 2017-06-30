@@ -11,9 +11,10 @@
   become: yes
   become_user: root
   unarchive:
-    src: /tmp/{{teampostgresql_zip}}
+    src: '/tmp/{{teampostgresql_zip}}'
     dest: '{{teampostgresql_parent_install_dir}}'
     creates: '{{teampostgresql_install_dir}}'
+    remote_src: yes
 
 - name: templatize...
   become: yes
@@ -29,3 +30,16 @@
     src: '{{item.f}}.j2'
     dest: '{{item.d}}/{{item.f}}'
     mode: '{{item.m}}'
+
+- name: daemonize...
+  become: yes
+  become_user: root
+  template:
+    src: 'teampostgresql-daemon.sh.j2'
+    dest: '/etc/init.d/teampostgresql-daemon.sh'
+    mode: '0755'
+
+- name: Make sure service is running
+  service:
+    state: started
+    name: teampostgresql-daemon

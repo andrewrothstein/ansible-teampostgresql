@@ -1,6 +1,5 @@
-andrewrothstein.teampostgresql
+fiftytruck.teampostgresql
 =========
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-teampostgresql.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-teampostgresql)
 
 Installs [TeamPostgreSQL](http://www.teampostgresql.com/)
 
@@ -25,7 +24,7 @@ Example Playbook
 ```yml
 - hosts: servers
   roles:
-    - andrewrothstein.teampostgresql
+    - fiftytruck.teampostgresql
 ```
 
 License
@@ -36,4 +35,7 @@ MIT
 Author Information
 ------------------
 
-Andrew Rothstein <andrew.rothstein@gmail.com>
+Forked from forked from andrewrothstein/ansible-teampostgresql
+(Andrew Rothstein <andrew.rothstein@gmail.com>)
+
+Adapted by @frinux
