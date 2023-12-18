@@ -1,4 +1,5 @@
 ---
 # vars file for teampostgresql
-teampostgresql_url: '{{teampostgresql_mirror}}/{{teampostgresql_zip}}'
-teampostgresql_install_dir: '{{teampostgresql_parent_install_dir}}/teampostgresql'
+teampostgresql_url: '{{ teampostgresql_mirror }}/{{ teampostgresql_zip }}'
+teampostgresql_tmp_zip: '{{ teampostgresql_tmpdir | default("/tmp") }}/{{ teampostgresql_zip }}'
+teampostgresql_install_dir: '{{ teampostgresql_parent_install_dir }}/teampostgresql'

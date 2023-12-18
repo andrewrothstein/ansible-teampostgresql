@@ -1,31 +1,37 @@
 ---
-- name: download...
-  become: yes
+- ansible.builtin.include_role:
+    name: andrewrothstein.unarchivedeps
+- ansible.builtin.include_role:
+    name: andrewrothstein.temurin
+  vars:
+    openjdk_app: jre
+- name: Downloading {{ teampostgresql_url }} to {{ teampostgresql_tmp_zip }}
+  become: true
   become_user: root
-  get_url:
-    url: '{{teampostgresql_url}}'
-    dest: /tmp/{{teampostgresql_zip}}
-    mode: 0644
+  ansible.builtin.get_url:
+    url: '{{ teampostgresql_url }}'
+    dest: '{{ teampostgresql_tmp_zip }}'
+    mode: '644'
 
-- name: unzip...
-  become: yes
+- name: Unzip {{ teampostgresql_tmp_zip }}...
+  become: true
   become_user: root
-  unarchive:
-    src: /tmp/{{teampostgresql_zip}}
-    dest: '{{teampostgresql_parent_install_dir}}'
-    creates: '{{teampostgresql_install_dir}}'
+  ansible.builtin.unarchive:
+    src: '{{ teampostgresql_tmp_zip }}'
+    dest: '{{ teampostgresql_parent_install_dir }}'
+    creates: '{{ teampostgresql_install_dir }}'
 
-- name: templatize...
-  become: yes
+- name: Templatize...
+  become: true
   become_user: root
   with_items:
     - f: teampostgresql.sh
       d: /etc/profile.d
-      m: '0644'
+      m: '644'
     - f: teampostgresql-run.sh
-      d: '{{teampostgresql_install_dir}}'
-      m: '0755'
-  template:
-    src: '{{item.f}}.j2'
-    dest: '{{item.d}}/{{item.f}}'
-    mode: '{{item.m}}'
+      d: '{{ teampostgresql_install_dir }}'
+      m: '755'
+  ansible.builtin.template:
+    src: '{{ item.f }}.j2'
+    dest: '{{ item.d }}/{{ item.f }}'
+    mode: '{{ item.m }}'

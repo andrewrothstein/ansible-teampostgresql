@@ -1,31 +1,30 @@
-dependencies:
-- role: andrewrothstein.unarchive-deps
-  version: v1.1.2
-- openjdk_app: jre
-  role: andrewrothstein.openjdk
-  version: v2.0.4
+---
 galaxy_info:
   author: Andrew Rothstein
   company: PointState Capital
   description: install teampostgresql
   galaxy_tags:
-  - development
-  license:
-  - MIT
-  min_ansible_version: 2.0
+    - development
+  license: MIT
+  min_ansible_version: '2.0'
   platforms:
-  - name: EL
-    versions:
-    - all
-  - name: Fedora
-    versions:
-    - all
-  - name: Ubuntu
-    versions:
-    - all
-  - name: Alpine
-    versions:
-    - all
-  - name: Debian
-    versions:
-    - jessie
+    - name: Alpine
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - bookworm
+        - bullseye
+    - name: EL
+      versions:
+        - 8
+        - 9
+    - name: Fedora
+      versions:
+        - 38
+        - 39
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+  role_name: teampostgresql
