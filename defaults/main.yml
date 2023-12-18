@@ -1,6 +1,6 @@
 ---
 # defaults file for teampostgresql
-teampostgresql_mirror: http://cdn.webworks.dk/download
+teampostgresql_mirror: https://cdn.teampostgresql.com/download
 teampostgresql_zip: teampostgresql_multiplatform.zip
 teampostgresql_parent_install_dir: /usr/local
 teampostgresql_port: 8082
